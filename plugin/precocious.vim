@@ -10,7 +10,8 @@ endif
 
 function! PrecociousCommit()
 python << EOF
-import os.path, sys, vim
+from fnmatch import fnmatch
+import sys, vim
 try:
     import git
 except ImportError as exc:
@@ -44,7 +45,7 @@ def commit_file(curfile):
 curfile = vim.current.buffer.name
 path_parts = get_path_parts()
 for part in path_parts:
-    if part in curfile:
+    if fnmatch(curfile, part):
         commit_file(curfile)
         break
 EOF

@@ -3,6 +3,7 @@ Vim-precocious
 ##############
 
 Vim-precocious allows you to autocommit files when saving file on predefined circumstances (path of full filename, to be exactly).
+If you don't want to commit, just leave prompt empty.
 
 Requirements
 ============
@@ -11,16 +12,16 @@ Requirements
 
 Usage
 =====
-Set `g:Precocious_path_parts` settings. It should be a list of path parts on which commit should done.
+Set `g:Precocious_path_parts` settings. It should be a list of filename patterns on which commit should done.
 For example:
 
 .. code-block:: vim
 
-  " Commit if file in `home` directory or has `www` somewhere in it's absolute path
-  let g:Precocious_path_parts = ['/home', 'www']
+  " Commit all rst files and all files in project direcory
+  let g:Precocious_path_parts = ['*.rst', '/home/user/project/*']
 
-  Note that it's not catalog or file extension or something else.
-  It's just a string from file's absolute path.
+It uses python's fnmatch module to check pattern.
+Don't forget about asterisk in absolute path: ``/etc/file.txt`` and ``etc/*.txt`` shouldn't match.
 
 
 Set event for autocommit:
