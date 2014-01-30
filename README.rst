@@ -22,12 +22,3 @@ For example:
 
 It uses python's fnmatch module to check pattern.
 Don't forget about asterisk in absolute path: ``/etc/file.txt`` and ``etc/*.txt`` shouldn't match.
-
-
-Set event for autocommit:
-
-.. code-block:: vim
-
-  " Autocommit only files with rst extension
-  au BufWritePost \*.rst call CommitFile()
-

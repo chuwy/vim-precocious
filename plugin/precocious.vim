@@ -50,3 +50,5 @@ for part in path_parts:
         break
 EOF
 endfunction
+
+au BufWritePost *.rst call PrecociousCommit()
