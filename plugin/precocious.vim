@@ -30,8 +30,7 @@ def get_path_parts():
         return
     return parts
 
-def commit_file():
-    curfile = vim.current.buffer.name
+def commit_file(curfile):
     if curfile:
         try:
             repo = git.Repo(curfile)
@@ -42,12 +41,11 @@ def commit_file():
         except (git.InvalidGitRepositoryError, git.GitCommandError) as exc:
             print(exc)
 
-curdir = os.path.abspath('.')
+curfile = vim.current.buffer.name
 path_parts = get_path_parts()
 for part in path_parts:
-    if part in curdir:
-        commit_file()
+    if part in curfile:
+        commit_file(curfile)
+        break
 EOF
 endfunction
-au BufWritePost *.rst call PrecociousCommit()
-
