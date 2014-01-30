@@ -1,5 +1,5 @@
 if !has('python')
-    echo "Error: Required vim compiled with +python"
+    echo "Error: vim-precocious require vim compiled with +python"
     finish
 endif
 
@@ -15,7 +15,7 @@ import sys, vim
 try:
     import git
 except ImportError as exc:
-    print('You should install python-git: apt-get intall python-git')
+    print('Error: vim-precocious require python-git. apt-get intall python-git')
     sys.exit(0)
 
 def python_input():
