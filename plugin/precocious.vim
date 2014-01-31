@@ -31,14 +31,23 @@ def get_path_parts():
         return
     return parts
 
+def is_wtree_changed(repo, curfile):
+    filename = curfile.split('/')[-1]
+    diffs = repo.index.diff(None)
+    for diff in diffs:
+        if diff.a_blob.path.split('/')[-1] == filename:
+            return True
+    return False
+
 def commit_file(curfile):
     if curfile:
         try:
             repo = git.Repo(curfile)
-            message = python_input()
-            if message != '' and not message.isspace():
-                repo.git.add(curfile)
-                repo.git.commit(m=message)
+            if is_wtree_changed(repo, curfile):
+                message = python_input()
+                if message != '' and not message.isspace():
+                    repo.git.add(curfile)
+                    repo.git.commit(m=message)
         except (git.InvalidGitRepositoryError, git.GitCommandError) as exc:
             print(exc)
 
