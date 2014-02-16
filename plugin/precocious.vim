@@ -15,7 +15,8 @@ import sys, vim
 try:
     import git
 except ImportError as exc:
-    print('Error: vim-precocious require python-git. apt-get intall python-git')
+    print("Error: vim-precocious require python-git, install it, please.\n"
+          "`apt-get intall python-git` or `pip install PyGit==0.3.2.RC1")
     sys.exit(0)
 
 def python_input():
